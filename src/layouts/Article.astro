@@ -1,0 +1,4 @@
+---
+import Base from './Base.astro';const {frontmatter}=Astro.props;const project=frontmatter.type==='project';
+---
+<Base title={frontmatter.title+' — Faruk'} description={frontmatter.description}><article class="prose"><a class="back" href={project?'/projeler/':'/blog/'}>← {project?'Tüm projeler':'Tüm yazılar'}</a><div><span class="sample">{project?'Örnek proje konsepti':'Örnek yazı'} · Tasarım önizlemesi</span></div><h1>{frontmatter.title}</h1><p class="mono">{frontmatter.category} / 28 EKİM 2026</p><slot/><hr style="border:0;border-top:1px solid var(--line);margin-top:50px"/><p style="font-size:12px">Bu içerik ilk tasarımı göstermek amacıyla hazırlanmıştır; gerçek yazı ve projelerinle değiştirilebilir.</p></article></Base>
