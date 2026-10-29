@@ -3,7 +3,7 @@ layout: ../../layouts/Article.astro
 title: "NODE: neden local-first bir AI arayüzü geliştiriyorum?"
 category: "Yazılım"
 description: "NODE: neden local-first bir AI arayüzü geliştiriyorum?"
-date: "29 EKİM 2026"
+date: "2026-10-29"
 ---
 
 NODE'u geliştirirken ilk hedefim, farklı yapay zekâ sağlayıcıları arasında geçiş yapılabilen bir çalışma alanı oluşturmaktı. Proje ilerledikçe önceliğim daha netleşti: **insanların kendi bilgisayarlarında çalışan modelleri kullanmasını kolaylaştırmak.**
