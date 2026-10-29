@@ -1,13 +1,14 @@
 ---
 layout: ../../layouts/Project.astro
-title: "NODE"
-description: "Yerel Ollama modelleri ile isteğe bağlı bulut sağlayıcılarını aynı çalışma alanında birleştirmeyi hedefleyen AI arayüzü."
-category: "Yapay zekâ uygulaması"
-status: "Geliştirme aşamasında"
-technologies: "Python · FastAPI · Ollama · MCP"
+title: NODE
+description: Yerel Ollama modelleri ile isteğe bağlı bulut sağlayıcılarını aynı çalışma alanında birleştirmeyi hedefleyen AI arayüzü.
+category: Yapay zekâ uygulaması
+status: Geliştirme aşamasında
+technologies: Python · FastAPI · Ollama · MCP
 order: 1
 featured: true
 visual: node
+cover: /images/Node.jpg
 ---
 
 ## Proje hakkında
