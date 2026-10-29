@@ -1,0 +1,15 @@
+{
+  "hero_eyebrow": "MERHABA, BEN FARUK",
+  "hero_line1": "Fikirler",
+  "hero_line2_before": "kodla",
+  "hero_line2_highlight": "hayat",
+  "hero_line3": "buluyor.",
+  "hero_intro": "Yapay zekâ sistemleri, matematiksel modeller ve etkileşimli deneyimler geliştiriyorum. Burası projelerimi, araştırmalarımı ve yol boyunca öğrendiklerimi paylaştığım yer.",
+  "about_title": "Merhaba, ben Faruk.",
+  "about_intro": "Matematik öğrencisiyim; yapay zekâ, yazılım mühendisliği ve ürün geliştirme alanlarında çalışıyorum.",
+  "about_p1": "Yıldız Teknik Üniversitesi Matematik Bölümü öğrencisiyim. Matematiksel düşünceyi yazılım geliştirme ve yapay zekâ sistemleriyle birleştirmek ilgimi çekiyor. Özellikle Transformer mimarileri, uyarlamalı hesaplama, LLM tabanlı uygulamalar ve ajan sistemleri üzerine çalışıyorum.",
+  "about_p2": "Bitirme araştırmamda Universal Transformer, Adaptive Computation Time ve kendi Attend–Compute–Stop yönlendirme yaklaşımım üzerine deneyler yaptım. Araştırma tarafında modellerin yalnızca ne kadar doğru olduğunu değil, sonuca ulaşmak için ne kadar hesaplama yaptığını da anlamaya çalışıyorum.",
+  "about_p3": "Uygulama tarafında NODE ile yerel AI kullanımını kolaylaştırmaya, oyun geliştirme tarafında ise Unity ile etkileşimli prototipler üretmeye odaklanıyorum. Burada projelerimin hem çalışan kısımlarını hem de henüz çözemediğim problemlerini paylaşmak istiyorum.",
+  "github_url": "https://github.com/mangaltepe",
+  "footer_tagline": "Merak et. Deney yap. Üret."
+}
