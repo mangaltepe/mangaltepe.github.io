@@ -8,7 +8,7 @@ technologies: Python · FastAPI · Ollama · MCP
 order: 1
 featured: true
 visual: node
-cover: /images/Node.jpg
+cover: /images/Adsız tasarım.jpg
 ---
 
 ## Proje hakkında
