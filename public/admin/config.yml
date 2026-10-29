@@ -1,0 +1,93 @@
+# Sveltia CMS — GitHub Pages compatible, no custom backend.
+# Only GitHub users with write permission on this repository can publish.
+# For a solo author, use a fine-grained GitHub access token scoped ONLY
+# to mangaltepe/mangaltepe.github.io with Contents: Read and write.
+backend:
+  name: github
+  repo: mangaltepe/mangaltepe.github.io
+  branch: main
+  auth_methods: [token]
+
+locale: tr
+site_url: https://mangaltepe.github.io
+display_url: https://mangaltepe.github.io
+media_folder: public/images
+public_folder: /images
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+collections:
+  - name: posts
+    label: Blog Yazıları
+    label_singular: Yazı
+    folder: src/pages/blog
+    extension: md
+    create: true
+    delete: true
+    preview_path: /blog/{{slug}}/
+    slug:
+      template: "{{slug}}"
+      editable: [create]
+    fields:
+      - { name: layout, widget: hidden, default: "../../layouts/Article.astro" }
+      - { name: title, label: Başlık, widget: string }
+      - { name: description, label: Kısa açıklama, widget: text }
+      - name: category
+        label: Kategori
+        widget: select
+        options: ["Yapay Zekâ", "Yazılım", "Oyun", "Matematik", "Notlar"]
+      - { name: date, label: Yayın tarihi, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+      - { name: cover, label: Kapak görseli, widget: image, required: false }
+      - { name: body, label: Yazı, widget: richtext }
+
+  - name: projects
+    label: Projeler
+    label_singular: Proje
+    folder: src/pages/projeler
+    extension: md
+    create: true
+    delete: true
+    preview_path: /projeler/{{slug}}/
+    slug:
+      template: "{{slug}}"
+      editable: [create]
+    fields:
+      - { name: layout, widget: hidden, default: "../../layouts/Project.astro" }
+      - { name: title, label: Proje adı, widget: string }
+      - { name: description, label: Kısa açıklama, widget: text }
+      - { name: category, label: Alan, widget: string }
+      - { name: status, label: Durum, widget: string }
+      - { name: technologies, label: Teknolojiler, widget: string }
+      - { name: order, label: Sıralama, widget: number, value_type: int, min: 1, default: 10 }
+      - { name: featured, label: Öne çıkan büyük kart, widget: boolean, default: false }
+      - name: visual
+        label: Varsayılan kart tasarımı
+        widget: select
+        options: [node, research, game, default]
+        default: default
+      - { name: cover, label: Gerçek proje görseli, widget: image, required: false }
+      - { name: body, label: Proje detayları, widget: richtext }
+
+  - name: settings
+    label: Site İçerikleri
+    files:
+      - name: site
+        label: Ana Sayfa ve Hakkımda
+        file: src/data/site.json
+        fields:
+          - { name: hero_eyebrow, label: Ana sayfa küçük başlık, widget: string }
+          - { name: hero_line1, label: Ana sayfa başlık satırı 1, widget: string }
+          - { name: hero_line2_before, label: Ana sayfa başlık satırı 2, widget: string }
+          - { name: hero_line2_highlight, label: Vurgulanan kelime, widget: string }
+          - { name: hero_line3, label: Ana sayfa başlık satırı 3, widget: string }
+          - { name: hero_intro, label: Ana sayfa tanıtımı, widget: text }
+          - { name: about_title, label: Hakkımda başlığı, widget: string }
+          - { name: about_intro, label: Hakkımda giriş, widget: text }
+          - { name: about_p1, label: Hakkımda paragraf 1, widget: text }
+          - { name: about_p2, label: Hakkımda paragraf 2, widget: text }
+          - { name: about_p3, label: Hakkımda paragraf 3, widget: text }
+          - { name: github_url, label: GitHub profil adresi, widget: string }
+          - { name: footer_tagline, label: Alt bilgi sloganı, widget: string }
