@@ -3,7 +3,7 @@ layout: ../../layouts/Article.astro
 title: "Universal Transformer ve dinamik hesaplama deneylerim"
 category: "Yapay Zekâ"
 description: "Universal Transformer ve dinamik hesaplama deneylerim"
-date: "29 EKİM 2026"
+date: "2026-10-29"
 ---
 
 Bu araştırmada temel sorum şu: **Bir Transformer, her örneğe aynı miktarda hesaplama ayırmak zorunda mı?** Bir aritmetik ifade için gereken işlem sayısı ile o ifadenin zorluğu her zaman aynı değil. Bu nedenle sabit katmanlı Transformer, Universal Transformer (UT), ACT ve kendi Attend–Compute–Stop (ACS) yaklaşımımı deneysel olarak karşılaştırdım.
