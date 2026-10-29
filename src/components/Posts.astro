@@ -1,4 +1,4 @@
 ---
 import {posts} from '../data';
 ---
-<div id="post-list">{posts.map(p=><a class="article-row" data-category={p.category} data-title={p.title+' '+p.description} href={'/blog/'+p.slug+'/'}><span class="date">{p.date}</span><div><h3>{p.title}</h3><p>{p.description}</p></div><span class="row-tag">{p.category} · Örnek yazı</span><span aria-hidden="true">↗</span></a>)}</div>
+<div id="post-list">{posts.map(p=><a class="article-row" data-category={p.category} data-title={p.title+' '+p.description} href={'/blog/'+p.slug+'/'}><span class="date">{p.date}</span><div><h3>{p.title}</h3><p>{p.description}</p></div><span class="row-tag">{p.category}</span><span aria-hidden="true">↗</span></a>)}</div>
