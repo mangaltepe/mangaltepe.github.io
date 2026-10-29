@@ -1,9 +1,10 @@
 ---
 layout: ../../layouts/Article.astro
-title: "Magic Duel: çizerek büyü yapılan bir oyun geliştirmek"
-category: "Oyun"
-description: "Magic Duel: çizerek büyü yapılan bir oyun geliştirmek"
-date: "2026-10-29"
+title: 'Symbol:'
+description: 'Symbol: çizerek büyü yapılan bir oyun geliştirmek'
+category: Oyun
+date: 2026-10-29
+cover: /images/Symbol.jpg
 ---
 
 Magic Duel'de klasik bir büyü düğmesine basmak yerine oyuncunun ekrana bir sembol çizmesini istedim. Oyun fikrinin merkezinde **çizim tanıma ile hızlı taktik kararların birleşmesi** var.
