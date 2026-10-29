@@ -1,4 +1,5 @@
 ---
-import {posts} from '../data';
+const modules=import.meta.glob('../pages/blog/*.md',{eager:true});
+const posts=Object.entries(modules).map(([path,mod])=>({...(mod as any).frontmatter,slug:path.split('/').pop()!.replace(/\.md$/,'')})).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
 ---
 <div id="post-list">{posts.map(p=><a class="article-row" data-category={p.category} data-title={p.title+' '+p.description} href={'/blog/'+p.slug+'/'}><span class="date">{p.date}</span><div><h3>{p.title}</h3><p>{p.description}</p></div><span class="row-tag">{p.category}</span><span aria-hidden="true">↗</span></a>)}</div>
