@@ -1,13 +1,14 @@
 ---
 layout: ../../layouts/Project.astro
-title: "Magic Duel"
-description: "Çizim tanıma, büyü kartları, mana ve LAN üzerinden iki oyunculu düello mekaniklerini birleştiren Unity prototipi."
-category: "Oyun geliştirme"
-status: "Prototip"
-technologies: "Unity · C# · LAN"
+title: Magic Duel
+description: Çizim tanıma, büyü kartları, mana ve LAN üzerinden iki oyunculu düello mekaniklerini birleştiren Unity prototipi.
+category: Oyun geliştirme
+status: Prototip
+technologies: Unity · C# · LAN
 order: 3
 featured: false
 visual: game
+cover: /images/Symbol.jpg
 ---
 
 ## Oyun fikri
