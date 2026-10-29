@@ -1,29 +1,34 @@
 # Faruk / Personal Studio
 
-Yıldız Teknik Üniversitesi Matematik Bölümü öğrencisi Ahmet Faruk Mangaltepe'nin kişisel portföyü, proje notları ve blogu. Astro 5 ile oluşturulmuş statik site.
+Astro ile oluşturulmuş kişisel portföy, proje ve teknik blog sitesi.
 
-## Gerçek proje sayfaları
-- `src/pages/projeler/node.astro` — NODE, Ollama odaklı yerel AI çalışma alanı (geliştiriliyor)
-- `src/pages/projeler/transformer-research.astro` — Universal Transformer, ACT ve ACS deneyleri
-- `src/pages/projeler/magic-duel.astro` — Unity ile çizim tabanlı LAN oyun prototipi
+## İçerik yönetim paneli
 
-Bu sayfalardaki proje durumları ve ölçüm sonuçları geliştirme notlarından aktarılmıştır; farklı deneylerin sonuçları doğrudan karşılaştırılmamalıdır. Özel depolar için kamuya açık kaynak kod bağlantısı eklenmemiştir.
+**Panel:** https://mangaltepe.github.io/admin/
 
-## Düzenleme
-- Ana sayfa: `src/pages/index.astro`
-- Proje kartları: `src/components/Projects.astro`
-- Proje detayları: `src/pages/projeler/*.astro`
-- Blog yazıları: `src/pages/blog/*.md`
-- Blog listesi / metadata: `src/data.ts`
-- Hakkımda: `src/pages/hakkimda.astro`
-- Tasarım: `src/styles/studio.css`
-- Ortak layout: `src/layouts/Base.astro`
+GitHub Pages üzerinde çalışan Sveltia CMS kullanılır. Özel bir veritabanı, CMS sunucusu veya API anahtarı dosyası gerekmez. İçerikler GitHub'a commit olarak kaydedilir.
 
-Yeni blog yazısı eklerken `src/pages/blog/` içine Markdown oluşturun ve `src/data.ts` listesine aynı slug ile kayıt ekleyin.
+### İlk giriş
 
-## Yerel çalıştırma
+1. GitHub'da **Settings → Developer settings → Personal access tokens → Fine-grained tokens** sayfasını aç.
+2. Yalnızca `mangaltepe/mangaltepe.github.io` deposunu seç. **Contents: Read and write** izni ver. Gerekli asgari ek izinler için giriş ekranındaki yönergeleri izle.
+3. Kısa süreli token oluştur. **Kimseye gönderme; depoya, site koduna veya sohbetlere yapıştırma.**
+4. `/admin/` adresini aç, **Sign In with Token** seç ve token'ı yalnızca o giriş ekranına gir.
+5. **Blog Yazıları**, **Projeler** veya **Site İçerikleri** kısmından metinleri/görselleri düzenle; kaydet/yayımla.
+6. GitHub Actions başarılı olduğunda site yeniden oluşturulur. Token tarayıcıda saklanabileceğinden yalnız kendi güvenilir cihazında kullan, işin bitince çıkış yap ve gerek kalmadığında GitHub'dan token'ı iptal et.
 
-Node.js 22 veya uyumlu sürüm:
+**Güvenlik:** `/admin/` adresi herkese açık bir giriş sayfasıdır ama GitHub'da yazma yetkisi olmayan ziyaretçiler içerik yayımlayamaz. Token hiçbir zaman HTML, Astro, YAML veya GitHub deposuna eklenmemelidir.
+
+### Düzenlenebilenler
+
+- Blog: `src/pages/blog/*.md` (başlık, kategori, tarih, metin, kapak)
+- Projeler: `src/pages/projeler/*.md` (başlık, durum, teknoloji, sıra, görsel ve detay)
+- Ana sayfa + Hakkımda + GitHub linki: `src/data/site.json`
+- Medya yüklemeleri: `public/images/`
+
+Proje kartları `src/components/Projects.astro` içinden, blog listesi `src/components/Posts.astro` içinden Markdown başlıklarına göre otomatik üretilir. Yeni içerik eklemek için artık `src/data.ts` dosyasına kayıt girmek gerekmez.
+
+## Yerel geliştirme
 
 ```bash
 npm ci
@@ -31,10 +36,10 @@ npm run dev
 npm run build
 ```
 
+Ana tasarım: `src/styles/studio.css`. Ortak şablon: `src/layouts/Base.astro`.
+
 ## GitHub Pages
 
-`.github/workflows/deploy.yml` ile `main` dalına gelen değişiklikler dağıtılır. GitHub → Settings → Pages → Build and deployment → GitHub Actions seçin. Site: https://mangaltepe.github.io
+`.github/workflows/deploy.yml` ile `main` dalındaki güncellemeler yayımlanır. GitHub → **Settings → Pages → Source → GitHub Actions** seçeneğinin aktif olduğundan emin ol. Site: https://mangaltepe.github.io
 
-## Notlar
-
-Bu site tamamen statiktir, admin paneli yoktur. Gizli anahtarları, kişisel belgeleri veya özel repo dosyalarını eklemeyin. Sayfa görselleri stilize illüstrasyonlardır; gerçek uygulama ekran görüntüsü olarak sunulmaz.
+**Not:** Portföyde araştırma sonuçları deneysel doğrulama sonuçları olarak sunulur. Özel depolardaki kodları veya kişisel anahtarları yayımlama.
