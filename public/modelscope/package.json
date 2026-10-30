@@ -1,0 +1,1 @@
+{"name":"modelscope","version":"1.0.0","private":true,"type":"module","scripts":{"build":"python scripts/build.py","test":"node tests/readers.test.mjs","dev":"python -m http.server 8000"}}
