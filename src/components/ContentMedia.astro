@@ -1,0 +1,30 @@
+---
+interface MediaImage {image?:string; caption?:string; alt?:string}
+interface DownloadItem {label?:string; url?:string; version?:string; platform?:string}
+const {gallery=[],video_url='',video_caption='',downloads=[],title='İçerik'} = Astro.props;
+const safeImages=(Array.isArray(gallery)?gallery:[]).filter((x:MediaImage)=>x && typeof x.image==='string' && /^(\/|https:\/\/)/.test(x.image));
+const safeDownloads=(Array.isArray(downloads)?downloads:[]).filter((x:DownloadItem)=>x && typeof x.url==='string' && /^https:\/\//i.test(x.url));
+function embedUrl(raw:string):string|null {
+  if (!raw) return null;
+  try {
+    const url = new URL(raw);
+    const host=url.hostname.toLowerCase();
+    let id='';
+    if (host==='youtu.be') id=url.pathname.slice(1).split('/')[0];
+    else if (['youtube.com','www.youtube.com','m.youtube.com','www.youtube-nocookie.com'].includes(host)){
+      if(url.pathname==='/watch')id=url.searchParams.get('v')||'';
+      else if(/^\/(shorts|embed|live)\//.test(url.pathname))id=url.pathname.split('/')[2]||'';
+    }
+    if (/^[\w-]{11}$/.test(id)) return 'https://www.youtube-nocookie.com/embed/'+id;
+    if(host==='vimeo.com'||host==='www.vimeo.com'){
+      const vm=url.pathname.split('/').filter(Boolean)[0];
+      if(/^\d+$/.test(vm||''))return 'https://player.vimeo.com/video/'+vm;
+    }
+  }catch{}
+  return null;
+}
+const video=embedUrl(video_url);
+---
+{safeImages.length>0&&<section class="media-section" aria-label="Fotoğraf galerisi"><h2>Görseller</h2><div class="media-gallery">{safeImages.map((item:MediaImage,i:number)=><figure><a href={item.image} target="_blank" rel="noopener noreferrer" aria-label={item.alt||'Görseli büyüt'}><img src={item.image} alt={item.alt||title+' görsel '+(i+1)} loading="lazy" decoding="async"/></a>{item.caption&&<figcaption>{item.caption}</figcaption>}</figure>)}</div></section>}
+{video&&<section class="media-section" aria-label="Proje videosu"><h2>Video</h2><div class="media-video"><iframe src={video} title={video_caption||title+' videosu'} loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>{video_caption&&<p class="media-caption">{video_caption}</p>}</section>}
+{safeDownloads.length>0&&<section class="media-section" aria-label="Proje indirmeleri"><h2>İndir & incele</h2><div class="download-grid">{safeDownloads.map((d:DownloadItem)=><a class="download-item" href={d.url} target="_blank" rel="noopener noreferrer"><span class="download-icon" aria-hidden="true">↓</span><span class="download-copy"><strong>{d.label||'Dosyayı aç'}</strong><small>{[d.platform,d.version].filter(Boolean).join(' · ')||'Harici indirme bağlantısı'}</small></span><span aria-hidden="true">↗</span></a>)}</div><p class="media-caption">Dosyalar harici bağlantılardan açılır. Yalnızca güvendiğin dosyaları indir.</p></section>}
