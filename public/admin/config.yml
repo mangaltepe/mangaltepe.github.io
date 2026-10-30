@@ -41,6 +41,17 @@ collections:
         options: ["Yapay Zekâ", "Yazılım", "Oyun", "Matematik", "Notlar"]
       - { name: date, label: Yayın tarihi, widget: datetime, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
       - { name: cover, label: Kapak görseli, widget: image, required: false }
+      - name: gallery
+        label: Fotoğraf galerisi
+        widget: list
+        required: false
+        summary: "{{fields.caption}}"
+        fields:
+          - { name: image, label: Fotoğraf, widget: image }
+          - { name: alt, label: Erişilebilir açıklama, widget: string, required: false }
+          - { name: caption, label: Fotoğraf alt yazısı, widget: string, required: false }
+      - { name: video_url, label: YouTube veya Vimeo video adresi, widget: string, required: false }
+      - { name: video_caption, label: Video açıklaması, widget: string, required: false }
       - { name: body, label: Yazı, widget: richtext }
 
   - name: projects
@@ -69,6 +80,27 @@ collections:
         options: [node, research, game, default]
         default: default
       - { name: cover, label: Gerçek proje görseli, widget: image, required: false }
+      - name: gallery
+        label: Fotoğraf galerisi
+        widget: list
+        required: false
+        summary: "{{fields.caption}}"
+        fields:
+          - { name: image, label: Fotoğraf, widget: image }
+          - { name: alt, label: Erişilebilir açıklama, widget: string, required: false }
+          - { name: caption, label: Fotoğraf alt yazısı, widget: string, required: false }
+      - { name: video_url, label: YouTube veya Vimeo video adresi, widget: string, required: false }
+      - { name: video_caption, label: Video açıklaması, widget: string, required: false }
+      - name: downloads
+        label: İndirme bağlantıları
+        widget: list
+        required: false
+        summary: "{{fields.label}}"
+        fields:
+          - { name: label, label: Buton adı, widget: string }
+          - { name: url, label: HTTPS indirme adresi (GitHub Releases vb.), widget: string }
+          - { name: platform, label: Platform (Windows, Android vb.), widget: string, required: false }
+          - { name: version, label: Sürüm, widget: string, required: false }
       - { name: body, label: Proje detayları, widget: richtext }
 
   - name: settings
