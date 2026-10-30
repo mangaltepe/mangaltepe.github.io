@@ -1,6 +1,7 @@
 ---
 import Base from './Base.astro';
+import ContentMedia from '../components/ContentMedia.astro';
 const {frontmatter}=Astro.props;
 const project=frontmatter.type==='project';
 ---
-<Base title={frontmatter.title+' — Faruk'} description={frontmatter.description || frontmatter.title}><article class="prose"><a class="back" href={project?'/projeler/':'/blog/'}>← {project?'Tüm projeler':'Tüm yazılar'}</a><h1>{frontmatter.title}</h1><p class="mono">{frontmatter.category}{frontmatter.date ? ' / '+frontmatter.date : ''}</p><slot/></article></Base>
+<Base title={frontmatter.title+' — Faruk'} description={frontmatter.description || frontmatter.title}><article class="prose"><a class="back" href={project?'/projeler/':'/blog/'}>← {project?'Tüm projeler':'Tüm yazılar'}</a><h1>{frontmatter.title}</h1><p class="mono">{frontmatter.category}{frontmatter.date ? ' / '+frontmatter.date : ''}</p><slot/><ContentMedia title={frontmatter.title} gallery={frontmatter.gallery} video_url={frontmatter.video_url} video_caption={frontmatter.video_caption} downloads={frontmatter.downloads}/></article></Base>
