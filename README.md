@@ -43,3 +43,15 @@ Ana tasarım: `src/styles/studio.css`. Ortak şablon: `src/layouts/Base.astro`.
 `.github/workflows/deploy.yml` ile `main` dalındaki güncellemeler yayımlanır. GitHub → **Settings → Pages → Source → GitHub Actions** seçeneğinin aktif olduğundan emin ol. Site: https://mangaltepe.github.io
 
 **Not:** Portföyde araştırma sonuçları deneysel doğrulama sonuçları olarak sunulur. Özel depolardaki kodları veya kişisel anahtarları yayımlama.
+
+## Fotoğraf, video ve indirme bağlantıları
+
+Admin panelindeki **Blog Yazıları** ve **Projeler** formunda:
+- **Fotoğraf galerisi** → birden fazla fotoğraf yükle, erişilebilir açıklama ve isteğe bağlı alt yazı ekle.
+- **YouTube veya Vimeo video adresi** → video bağlantısını ekle; sayfada gömülü oynatıcı görünür. İstersen video açıklaması ekle.
+- **İndirme bağlantıları** (projeler) → buton adı, HTTPS URL, sürüm ve platform gir. GitHub Releases asset URL'leri, itch.io indirme sayfaları veya başka güvenilir HTTPS indirme adresleri kullanılabilir.
+- **Yazı / Proje detayları** içinde zengin metin düzenleyici ile satır içi görseller ve Markdown bağlantıları ekleyebilirsin.
+
+Yayımlanmamış projeye indirme adresi ekleme; indirme alanı ancak bağlantı girildiğinde görünür. GitHub Pages statik barındırma kullanır. Büyük uygulama dosyalarını bu repoya yüklemek yerine GitHub Releases gibi dağıtım platformlarında tutmak uygundur. Video dosyalarını da doğrudan repoya yüklemek yerine YouTube/Vimeo üzerinden gömmek tercih edilir.
+
+Görseller `public/images` içinde depolanır. Alt metinleri görsel içeriğini açıklayacak şekilde doldur. CMS alanları `public/admin/config.yml`, görüntüleme bileşeni `src/components/ContentMedia.astro` içindedir.
