@@ -1,18 +1,26 @@
 ---
-const modules=import.meta.glob('../pages/projeler/*.md',{eager:true});
-const projects=Object.entries(modules).map(([path,mod])=>({...(mod as any).frontmatter,slug:path.split('/').pop()!.replace(/\.md$/,'')})).sort((a,b)=>(Number(a.order)||99)-(Number(b.order)||99));
+const { limit } = Astro.props;
+const modules = import.meta.glob('../pages/projeler/*.md', { eager: true });
+const allProjects = Object.entries(modules)
+  .map(([path, mod]) => ({ ...(mod as any).frontmatter, slug: path.split('/').pop()!.replace(/\.md$/, '') }))
+  .sort((a,b) => (Number(a.order) || 99) - (Number(b.order) || 99));
+const projects = typeof limit === 'number' && limit > 0 ? allProjects.slice(0, limit) : allProjects;
 ---
-<div class="projects">
-{projects.map((p,i)=><a class:list={['project',{'featured':p.featured}]} href={'/projeler/'+p.slug+'/'}>
-  <div class:list={['project-art',p.visual==='research'?'art-research':p.visual==='game'?'art-game':'art-node']}>
-    {p.cover ? <img class="project-cover" src={p.cover} alt={p.title+' ekran görüntüsü'} loading="lazy"/> : <>
-      {p.visual==='node' && <div class="node-graphic" aria-hidden="true"><div class="node-graphic-bar"><span>● NODE / WORKSPACE</span><span>LOCAL AI ●</span></div><div class="node-graphic-main"><strong>Your models.<br/><span>One workspace.</span></strong><div class="node-graphic-input">What would you like to build? <i>↗</i></div><div class="node-graphic-chips"><span>OLLAMA</span><span>STREAMING</span><span>MCP TOOLS</span></div></div></div>}
-      {p.visual==='research' && <><div class="research-graphic" aria-hidden="true"><div class="research-stage"><b>ATTEND</b><span>INPUT</span></div><div class="research-stage"><b>COMPUTE</b><span>REASONING</span></div><div class="research-stage"><b>STOP</b><span>OUTPUT</span></div></div><div class="research-footer"></div></>}
-      {p.visual==='game' && <div class="duel-graphic" aria-hidden="true"><div class="duel-player"><b>MAGE / 01</b><div class="duel-health"><span></span></div></div><div class="duel-cast">✦</div><div class="duel-player"><b>MAGE / 02</b><div class="duel-health"><span></span></div></div></div>}
-      {p.visual==='default' && <div class="generic-project-graphic" aria-hidden="true">{p.title}</div>}
-    </>}
-    <div class="art-top"><span class="art-label">{String(i+1).padStart(2,'0')} / {p.category}</span><span class="art-arrow" aria-hidden="true">↗</span></div><span class="art-index">{p.technologies}</span>
-  </div>
-  <div class="project-meta"><h3>{p.title} ↗</h3><span class="sample">{p.status}</span></div><p>{p.description}</p><span class="tag">{p.technologies}</span>
-</a>)}
+<div class="projects-grid">
+  {projects.map((project) => (
+    <a class:list={['project-card', { featured: Boolean(project.featured) }]} href={'/projeler/' + project.slug + '/'}>
+      <div class="project-visual">
+        {project.cover
+          ? <img src={project.cover} alt={project.title + ' proje görseli'} loading="lazy" decoding="async" />
+          : <div class="project-placeholder" aria-hidden="true"><strong>{project.title}</strong><span>{project.category}</span></div>
+        }
+      </div>
+      <div class="project-details">
+        <div class="project-topline"><span>{project.category}</span><span>{project.status}</span></div>
+        <h3>{project.title} <span aria-hidden="true">↗</span></h3>
+        <p>{project.description}</p>
+        <span class="project-stack">{project.technologies}</span>
+      </div>
+    </a>
+  ))}
 </div>

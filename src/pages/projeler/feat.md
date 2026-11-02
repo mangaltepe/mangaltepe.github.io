@@ -1,10 +1,10 @@
 ---
 layout: ../../layouts/Project.astro
 title: Feat
-description: Feat | AI-Powered Personalized Nutrition App
-category: AI Engineer
-status: İn Development
-technologies: Python,n8n,Flutter
+description: Yemek tanıma ve kişiselleştirilmiş beslenme takibi üzerine geliştirdiğim mobil uygulama prototipi.
+category: Mobil uygulama
+status: Prototip
+technologies: Python · n8n · Flutter
 order: 4
 featured: false
 visual: default

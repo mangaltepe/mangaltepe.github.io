@@ -2,7 +2,16 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
-<Base title="Hakkımda — Ahmet Faruk Mangaltepe">
-<div class="page-head"><div class="eyebrow">HAKKIMDA / BACKGROUND</div><h1>{site.about_title}</h1><p>{site.about_intro}</p></div>
-<div class="about-grid"><div><p>{site.about_p1}</p><p>{site.about_p2}</p><p>{site.about_p3}</p><div class="actions"><a class="btn" href="/projeler/">Projelerimi incele <span>↗</span></a><a class="text-link" href={site.github_url} target="_blank" rel="noopener noreferrer">GitHub profilim ↗</a></div></div><aside class="about-card"><h3>Şu an odaklandıklarım</h3><div>01 / Transformer mimarileri & conditional computation</div><div>02 / Local-first yapay zekâ uygulamaları</div><div>03 / AI agents, MCP & yazılım mimarisi</div><div>04 / Unity ve oyun prototipleri</div><h3 style="margin-top:25px">Eğitim</h3><div>Yıldız Teknik Üniversitesi<br/>Matematik Bölümü</div></aside></div>
+<Base title="Hakkımda — Ahmet Faruk Mangaltepe" description={site.about_intro}>
+  <section class="page-heading"><span class="eyebrow">Hakkımda</span><h1>{site.about_title}</h1><p>{site.about_intro}</p></section>
+  <div class="about-layout">
+    <div class="about-body">
+      <p>{site.about_p1}</p><p>{site.about_p2}</p><p>{site.about_p3}</p>
+      <div class="hero-actions"><a class="button button-primary" href="/projeler/">Çalışmalarımı incele <span aria-hidden="true">↗</span></a><a class="button button-text" href={site.github_url} target="_blank" rel="noopener noreferrer">GitHub profilim ↗</a></div>
+    </div>
+    <aside class="about-aside">
+      <h2>Eğitim</h2><p>Yıldız Teknik Üniversitesi<br />Matematik Bölümü</p>
+      <h2>İlgi alanlarım</h2><ul><li>Transformer mimarileri ve uyarlamalı hesaplama</li><li>Yerel yapay zekâ uygulamaları</li><li>AI ajanları ve araç entegrasyonları</li><li>Unity ile oyun prototipleri</li></ul>
+    </aside>
+  </div>
 </Base>

@@ -1,13 +1,29 @@
 ---
 import Base from './Base.astro';
 import ContentMedia from '../components/ContentMedia.astro';
-const {frontmatter}=Astro.props;
+const { frontmatter } = Astro.props;
+const technologies = String(frontmatter.technologies || '').split(/[·,]/).map(t => t.trim()).filter(Boolean);
+const repositoryUrl = typeof frontmatter.repository_url === 'string' && /^https:\/\/github\.com\/[^/]+\/[^/]+\/?$/.test(frontmatter.repository_url) ? frontmatter.repository_url : '';
 ---
-<Base title={frontmatter.title+' — Faruk'} description={frontmatter.description}>
-<article class="case-detail">
-<div class="case-hero"><a class="case-back" href="/projeler/">← TÜM PROJELER</a><div class="eyebrow" style="margin-top:34px">{frontmatter.category}</div><h1>{frontmatter.title}</h1><p>{frontmatter.description}</p><span class="sample">{frontmatter.status}</span></div>
-{frontmatter.cover && <img class="project-detail-cover" src={frontmatter.cover} alt={frontmatter.title+' proje görseli'} loading="lazy" />}
-<div class="case-summary"><div><h2>Proje günlüğü</h2><div class="project-body"><slot/></div></div><aside><div class="project-facts"><h2>Teknolojiler</h2><p>{frontmatter.technologies}</p><h2>Mevcut durum</h2><p>{frontmatter.status}</p></div></aside></div>
-<ContentMedia title={frontmatter.title} gallery={frontmatter.gallery} video_url={frontmatter.video_url} video_caption={frontmatter.video_caption} downloads={frontmatter.downloads}/>
-</article>
+<Base title={frontmatter.title + ' — Ahmet Faruk Mangaltepe'} description={frontmatter.description || frontmatter.title}>
+  <article class="project-detail">
+    <div class="project-header">
+      <a class="back-link" href="/projeler/">← Projelere dön</a>
+      <p class="article-meta">{frontmatter.category} <span>· {frontmatter.status}</span></p>
+      <h1>{frontmatter.title}</h1>
+      <p class="project-lead">{frontmatter.description}</p>
+      {repositoryUrl && <a class="external-link" href={repositoryUrl} target="_blank" rel="noopener noreferrer">GitHub'da incele <span aria-hidden="true">↗</span></a>}
+    </div>
+    {frontmatter.cover && <div class="detail-image"><img src={frontmatter.cover} alt={frontmatter.title + ' proje görseli'} loading="lazy" /></div>}
+    <div class="project-body-layout">
+      <div class="prose"><slot /></div>
+      <aside class="project-sidebar">
+        <h2>Proje bilgileri</h2>
+        <dl><dt>Durum</dt><dd>{frontmatter.status}</dd><dt>Alan</dt><dd>{frontmatter.category}</dd></dl>
+        {technologies.length > 0 && <><h3>Teknolojiler</h3><div class="technology-tags">{technologies.map(technology => <span>{technology}</span>)}</div></>}
+      </aside>
+    </div>
+    <ContentMedia title={frontmatter.title} gallery={frontmatter.gallery} video_url={frontmatter.video_url} video_caption={frontmatter.video_caption} downloads={frontmatter.downloads} />
+    <div class="detail-bottom"><a class="back-link" href="/projeler/">← Diğer projeler</a></div>
+  </article>
 </Base>

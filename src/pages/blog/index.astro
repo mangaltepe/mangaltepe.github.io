@@ -1,11 +1,59 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Posts from '../../components/Posts.astro';
+const files = import.meta.glob('./*.md', { eager: true });
+const categories = [...new Set(Object.values(files).map(file => String((file as any).frontmatter.category || 'Diğer')))].sort((a,b) => a.localeCompare(b,'tr'));
 ---
-<Base title="Yazılar — Faruk"><div class="page-head"><div class="eyebrow">DÜŞÜNCE DEFTERİ / TEKNİK YAZILAR</div><h1>Yaparken öğrendiklerim.</h1><p>Modeller, yazılım mimarisi ve oyun prototipleri üzerine gerçek deneylerim. Buradaki yazılar tamamlanmış ürün duyuruları değil, geliştirme süreçlerimden notlar.</p></div><div class="tools"><div class="filters" aria-label="Yazı kategorileri">{['Tümü','Yapay Zekâ','Yazılım','Oyun'].map((c,i)=><button class:list={{selected:i===0}} aria-pressed={i===0} data-filter={c}>{c}</button>)}</div><input class="search" type="search" id="search" aria-label="Yazılarda ara" placeholder="Yazılarda ara…"/></div><div class="listing"><Posts/><p id="empty" class="empty" role="status" hidden>Bu aramaya uygun bir yazı bulunamadı.</p></div>
-<script>
-let category='Tümü';
-const input=document.querySelector<HTMLInputElement>('#search')!;
-function filter(){let visible=0;document.querySelectorAll<HTMLElement>('.article-row').forEach(row=>{const match=(category==='Tümü'||row.dataset.category===category)&&(row.dataset.title||'').toLocaleLowerCase('tr').includes(input.value.toLocaleLowerCase('tr'));row.hidden=!match;if(match)visible++});document.querySelector<HTMLElement>('#empty')!.hidden=visible>0}
-document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(btn=>btn.addEventListener('click',()=>{category=btn.dataset.filter!;document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.toggle('selected',b===btn);b.setAttribute('aria-pressed',String(b===btn))});filter()}));input.addEventListener('input',filter);
-</script></Base>
+<Base title="Yazılar — Ahmet Faruk Mangaltepe" description="Yapay zekâ, yazılım ve oyun geliştirme üzerine deney notları ve teknik yazılar.">
+  <section class="page-heading"><span class="eyebrow">Blog</span><h1>Yazılar</h1><p>Projeleri geliştirirken öğrendiklerimi, deneylerimi ve aldığım teknik kararları burada paylaşıyorum.</p></section>
+  <section class="listing" aria-label="Yazı arşivi">
+    <div class="blog-controls">
+      <div class="filters" role="group" aria-label="Kategoriye göre filtrele">
+        <button type="button" class="selected" data-filter="Tümü" aria-pressed="true">Tümü</button>
+        {categories.map(category => <button type="button" data-filter={category} aria-pressed="false">{category}</button>)}
+      </div>
+      <label class="search-field"><span class="visually-hidden">Yazılarda ara</span><input class="search" type="search" id="search" placeholder="Başlık veya içerikte ara…" autocomplete="off" /></label>
+    </div>
+    <p id="result-count" class="result-count" role="status" aria-live="polite"></p>
+    <Posts />
+    <div id="empty" class="empty-state" hidden><p>Bu aramaya uygun yazı bulunamadı.</p><button type="button" id="reset-search">Filtreleri temizle</button></div>
+  </section>
+  <script>
+    let activeCategory = 'Tümü';
+    const input = document.querySelector<HTMLInputElement>('#search');
+    const rows = [...document.querySelectorAll<HTMLElement>('.article-row')];
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    const count = document.querySelector<HTMLElement>('#result-count');
+    const empty = document.querySelector<HTMLElement>('#empty');
+    function applyFilters() {
+      const query = (input?.value || '').toLocaleLowerCase('tr-TR').trim();
+      let visible = 0;
+      for (const row of rows) {
+        const matchesCategory = activeCategory === 'Tümü' || row.dataset.category === activeCategory;
+        const matchesQuery = (row.dataset.title || '').toLocaleLowerCase('tr-TR').includes(query);
+        row.hidden = !(matchesCategory && matchesQuery);
+        if (!row.hidden) visible++;
+      }
+      if (count) count.textContent = visible + ' yazı gösteriliyor';
+      if (empty) empty.hidden = visible !== 0;
+    }
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        activeCategory = button.dataset.filter || 'Tümü';
+        for (const b of buttons) {
+          const selected = b === button;
+          b.classList.toggle('selected', selected);
+          b.setAttribute('aria-pressed', String(selected));
+        }
+        applyFilters();
+      });
+    }
+    input?.addEventListener('input', applyFilters);
+    document.querySelector('#reset-search')?.addEventListener('click', () => {
+      if (input) input.value = '';
+      buttons.find(button => button.dataset.filter === 'Tümü')?.click();
+      input?.focus();
+    });
+    applyFilters();
+  </script>
+</Base>
