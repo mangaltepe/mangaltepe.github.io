@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/Article.astro
-title: Symbol
+title: 'Magic Duel: çizerek büyü yapılan bir oyun prototipi'
 description: 'Symbol: çizerek büyü yapılan bir oyun geliştirmek'
 category: Oyun
 date: 2026-10-29

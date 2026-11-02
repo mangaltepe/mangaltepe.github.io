@@ -1,5 +1,22 @@
 ---
-const modules=import.meta.glob('../pages/blog/*.md',{eager:true});
-const posts=Object.entries(modules).map(([path,mod])=>({...(mod as any).frontmatter,slug:path.split('/').pop()!.replace(/\.md$/,'')})).sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+const { limit } = Astro.props;
+const modules = import.meta.glob('../pages/blog/*.md', { eager: true });
+const allPosts = Object.entries(modules)
+  .map(([path, mod]) => ({ ...(mod as any).frontmatter, slug: path.split('/').pop()!.replace(/\.md$/, '') }))
+  .sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+const posts = typeof limit === 'number' && limit > 0 ? allPosts.slice(0, limit) : allPosts;
+function formatDate(value:unknown) {
+  const raw = String(value || '');
+  const parsed = new Date(raw);
+  return Number.isNaN(parsed.getTime()) ? raw : parsed.toLocaleDateString('tr-TR', { day:'numeric', month:'short', year:'numeric', timeZone:'UTC' });
+}
 ---
-<div id="post-list">{posts.map(p=><a class="article-row" data-category={p.category} data-title={p.title+' '+p.description} href={'/blog/'+p.slug+'/'}><span class="date">{p.date}</span><div><h3>{p.title}</h3><p>{p.description}</p></div><span class="row-tag">{p.category}</span><span aria-hidden="true">↗</span></a>)}</div>
+<div class="posts-list" id="post-list">
+  {posts.map(post => (
+    <a class="article-row" data-category={post.category} data-title={post.title + ' ' + (post.description || '')} href={'/blog/' + post.slug + '/'}>
+      <time datetime={String(post.date || '')}>{formatDate(post.date)}</time>
+      <div class="article-content"><span class="article-category">{post.category}</span><h3>{post.title}</h3><p>{post.description}</p></div>
+      <span class="article-arrow" aria-hidden="true">↗</span>
+    </a>
+  ))}
+</div>

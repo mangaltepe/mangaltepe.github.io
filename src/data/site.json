@@ -1,15 +1,11 @@
 {
-  "hero_eyebrow": "MERHABA, BEN FARUK",
-  "hero_line1": "Fikirler",
-  "hero_line2_before": "kodla",
-  "hero_line2_highlight": "hayat",
-  "hero_line3": "buluyor.",
-  "hero_intro": "Yapay zekâ sistemleri, matematiksel modeller ve etkileşimli deneyimler geliştiriyorum. Burası projelerimi, araştırmalarımı ve yol boyunca öğrendiklerimi paylaştığım yer.",
+  "hero_title": "Matematikten yazılıma, fikirleri çalışan projelere dönüştürüyorum.",
+  "hero_intro": "Yapay zekâ sistemleri, Transformer mimarileri ve etkileşimli uygulamalar geliştiriyorum. Bu sitede çalışmalarımı, deney sonuçlarımı ve öğrendiklerimi paylaşıyorum.",
   "about_title": "Merhaba, ben Faruk.",
-  "about_intro": "Matematik öğrencisiyim; yapay zekâ, yazılım mühendisliği ve ürün geliştirme alanlarında çalışıyorum.",
-  "about_p1": "Yıldız Teknik Üniversitesi Matematik Bölümü öğrencisiyim. Matematiksel düşünceyi yazılım geliştirme ve yapay zekâ sistemleriyle birleştirmek ilgimi çekiyor. Özellikle Transformer mimarileri, uyarlamalı hesaplama, LLM tabanlı uygulamalar ve ajan sistemleri üzerine çalışıyorum.",
-  "about_p2": "Bitirme araştırmamda Universal Transformer, Adaptive Computation Time ve kendi Attend–Compute–Stop yönlendirme yaklaşımım üzerine deneyler yaptım. Araştırma tarafında modellerin yalnızca ne kadar doğru olduğunu değil, sonuca ulaşmak için ne kadar hesaplama yaptığını da anlamaya çalışıyorum.",
-  "about_p3": "Uygulama tarafında NODE ile yerel AI kullanımını kolaylaştırmaya, oyun geliştirme tarafında ise Unity ile etkileşimli prototipler üretmeye odaklanıyorum. Burada projelerimin hem çalışan kısımlarını hem de henüz çözemediğim problemlerini paylaşmak istiyorum.",
+  "about_intro": "Yıldız Teknik Üniversitesi Matematik Bölümü öğrencisiyim. Yapay zekâ araştırmaları ve yazılım geliştirme üzerine çalışıyorum.",
+  "about_p1": "Matematiksel düşünceyi uygulamalı yazılım ve yapay zekâ projelerine taşımaya çalışıyorum. Özellikle Transformer modelleri ve uyarlamalı hesaplama yöntemleri ilgimi çekiyor.",
+  "about_p2": "Bitirme çalışmamda Universal Transformer, Adaptive Computation Time ve Attend–Compute–Stop yönlendirme mekanizmaları üzerinde deneyler yürütüyorum. Sonuçları ve yöntemsel sınırları blogda açıklıyorum.",
+  "about_p3": "NODE ile yerel yapay zekâ kullanımını kolaylaştıran bir uygulama geliştiriyorum. Unity ile oyun prototipleri ve Flutter ile mobil uygulamalar da üretiyorum. Projelerimin tamamlanan ve devam eden yönlerini açıkça paylaşmayı önemsiyorum.",
   "github_url": "https://github.com/mangaltepe",
-  "footer_tagline": "Merak et. Deney yap. Üret."
+  "footer_tagline": "Yapay zekâ, yazılım ve geliştirme notları."
 }

@@ -1,10 +1,10 @@
 ---
 layout: ../../layouts/Project.astro
 title: Languide
-description: Dil öğrenmeni kolaylaştıran ve sana yardımcı olan uygulama
-category: AI Engineer / Software Development
-status: İn development
-technologies: Flutter,Python
+description: Makalelerde seçilen metinleri anlık çevirerek yabancı dilde okumayı kolaylaştıran Flutter uygulaması.
+category: Mobil uygulama
+status: Geliştirme aşamasında
+technologies: Flutter · Dart · LibreTranslate
 order: 5
 featured: false
 visual: default

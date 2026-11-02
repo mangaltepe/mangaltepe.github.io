@@ -110,11 +110,7 @@ collections:
         label: Ana Sayfa ve Hakkımda
         file: src/data/site.json
         fields:
-          - { name: hero_eyebrow, label: Ana sayfa küçük başlık, widget: string }
-          - { name: hero_line1, label: Ana sayfa başlık satırı 1, widget: string }
-          - { name: hero_line2_before, label: Ana sayfa başlık satırı 2, widget: string }
-          - { name: hero_line2_highlight, label: Vurgulanan kelime, widget: string }
-          - { name: hero_line3, label: Ana sayfa başlık satırı 3, widget: string }
+          - { name: hero_title, label: Ana sayfa büyük başlık, widget: string }
           - { name: hero_intro, label: Ana sayfa tanıtımı, widget: text }
           - { name: about_title, label: Hakkımda başlığı, widget: string }
           - { name: about_intro, label: Hakkımda giriş, widget: text }
